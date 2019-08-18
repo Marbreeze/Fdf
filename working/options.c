@@ -33,4 +33,6 @@ int check_size_function(char *buffer, char *map)
 }
 
 void    error_function(void)
+{
     ft_putstr("error");
+}
