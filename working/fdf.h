@@ -8,7 +8,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <math.h>
-# include "resources/mlx.h"
+# include "minilibx_macos/mlx.h"
 // # include "resources/mlx_int.h"
 // # include "resources/mlx_new_window.h"
 # include "libft/libft.h"

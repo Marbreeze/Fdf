@@ -215,6 +215,8 @@ t_fdf_list *put_in_list(t_fdf_list *list, char *line)
 
 void fdf_init(int ac, char **av, t_fdf_list *list, t_fdf *fdf)
 {
+	(void)ac;
+	(void)av;
 	ft_bzero(&fdf, sizeof(t_fdf));
 	ft_bzero(&list, sizeof(t_fdf_list));
 }
@@ -367,6 +369,7 @@ int		main(int ac, char **av)
 	int			fd;
 
 	fd = 0;
+	list = NULL;
 	if (ac != 2)
 		return (0);
 	else

@@ -6,7 +6,7 @@
 /*   By: jinpark <jinpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/16 10:20:04 by uamirov           #+#    #+#             */
-/*   Updated: 2019/08/18 13:55:34 by jinpark          ###   ########.fr       */
+/*   Updated: 2019/08/18 13:58:21 by jinpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_fdf_list	*put_in_list(t_fdf_list *list, char *line)
 	return (list);
 }
 
-t_fdf_list *read_file(int ac, char **av, t_fdf *fdf, t_fdf_list *list)
+t_fdf_list *read_file(int ac, char **av, t_fdf_list *list)
 {
 	int		fd;
 	char	*line;
@@ -59,9 +59,7 @@ t_fdf_list *read_file(int ac, char **av, t_fdf *fdf, t_fdf_list *list)
 
 void	struct_init(int ac, char **av ,t_fdf *fdf, t_fdf_list *list)
 {
-	int i;
 
-	i = 0;
 	fdf->first = (t_point *)malloc(sizeof(t_point));
 	fdf->second = (t_point *)malloc(sizeof(t_point));
 	fdf->first->x = 0;
@@ -70,7 +68,8 @@ void	struct_init(int ac, char **av ,t_fdf *fdf, t_fdf_list *list)
 	fdf->second->x = 0;
 	fdf->second->y = 0;
 	fdf->second->z = 0;
-	list = read_file(ac, av, fdf, list);
+	// ft_bzero(&list, sizeof(t_fdf_list));
+	list = read_file(ac, av, list);
 }
 
 int				main(int ac, char **av)
@@ -78,6 +77,7 @@ int				main(int ac, char **av)
 	t_fdf		fdf;
 	t_fdf_list	*list;
 
+	list = NULL;
 	struct_init(ac, av, &fdf, list);
 	// list = read_file(ac, av);
 	count_map_size(list, &fdf);
