@@ -64,11 +64,11 @@ int		**fill_the_matrix(t_fdf_list *list, t_fdf *fdf)
 	int		counter;
 
 	y = 0;
-	while (list->value)
+	while (y < fdf->row)
 	{
 		x = 0;
 		counter = 0;
-		while (list->value[counter])
+		while (x < fdf->column)
 		{
 			fdf->int_matrix[y][x] = ft_atoi(&list->value[counter]);
 			// while(list->value[counter] != '\0')
@@ -92,13 +92,21 @@ int		**create_int_matrix(t_fdf_list *list, t_fdf *fdf)
 	i = 0;
 	// if (!(fdf->int_matrix = (int **)malloc(sizeof(int *) * fdf->row)))
 	// 	return ;
-	fdf->int_matrix = (int **)malloc(sizeof(int *) * fdf->row);
-	while (i < fdf->row)
+	fdf->int_matrix = (int **)malloc(sizeof(int *) * (fdf->row + 1));
+	while (i++ < fdf->row)
 	{
 		// if (!(fdf->int_matrix[i] = (int *)malloc(sizeof(int) * fdf->column)))
 		// 	return (1);
-		fdf->int_matrix[i] = (int *)malloc(sizeof(int) * fdf->column);
-		i++;
+		fdf->int_matrix[i] = (int *)malloc(sizeof(int) * (fdf->column + 1));
+		fdf->int_matrix[i][fdf->column] = 0;
+	}
+	fdf->int_matrix[fdf->row] = NULL;
+	printf("value check");
+	i = -1;
+	while (++i < 11)
+	{
+		printf("test4 : value check %s\n", list->value);
+		list->value++;
 	}
 	fdf->int_matrix = fill_the_matrix(list, fdf);
 	return (fdf->int_matrix);

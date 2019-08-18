@@ -34,6 +34,7 @@ typedef struct			s_fdf
 	int					column;
 	int					row;
 	int					**int_matrix;
+	char				**value;
 	t_point				***triple_matrix;
 	t_point				***triple_iso_mat;
 	t_point				*first;
