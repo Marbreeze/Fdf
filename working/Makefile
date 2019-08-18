@@ -5,8 +5,8 @@ MINILIBX = -I ./minilibx_macos -L minilibx_macos -lmlx \
 LIBFT = libft/libft.a
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -g
-SRC = main.c
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+SRC = main.c algo_part.c print_part.c draw_and_print.c
 
 OBJ = $(SRC:.c=.o)
 
