@@ -17,7 +17,7 @@ int		esc(int key)
 void	open_window(t_fdf *fdf)
 {
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1524, 1524, "FDF");
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1280, 720, "FDF");
 	print_figure(fdf);
 	mlx_hook(fdf->win_ptr, 17, 0, close_w, (void *)0);
 	mlx_hook(fdf->win_ptr, 2, 0, esc, (void *)0);

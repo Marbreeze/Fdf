@@ -101,18 +101,18 @@ void			draw_line(t_fdf *fdf)
 	{
 		if (fdf->first->x > fdf->second->x)
 			print_low(fdf, fdf->second, fdf->first, \
-						minimum_altitude + 9056567);
+						minimum_altitude + MARINA);
 		else
 			print_low(fdf, fdf->first, fdf->second, \
-						minimum_altitude + 9056567);
+						minimum_altitude + MARINA);
 	}
 	else
 	{
 		if (fdf->first->y > fdf->second->y)
 			print_high(fdf, fdf->second, fdf->first, \
-						minimum_altitude + 9056567);
+						minimum_altitude + MARINA);
 		else
 			print_high(fdf, fdf->first, fdf->second, \
-						minimum_altitude + 9056567);
+						minimum_altitude + MARINA);
 	}
 }

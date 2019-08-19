@@ -33,9 +33,9 @@ void	create_isometric(t_fdf *fdf)
 		return ;
 	while (y < fdf->row)
 	{
-		x = 0;
 		if (!(fdf->triple_iso_mat[y] = (t_point **)malloc(sizeof(t_point *) * (fdf->column + 1))))
 			return ;
+		x = 0;
 		while (x < fdf->column)
 		{
 			if (!(fdf->triple_iso_mat[y][x] = (t_point *)malloc(sizeof(t_point))))
@@ -65,11 +65,11 @@ void	create_matrix_structure(t_fdf *fdf)
 	y = 0;
 	if (!(fdf->triple_matrix = (t_point ***)malloc(sizeof(t_point **) * (fdf->row + 1))))
 		return ;
-	while (x < fdf->row)
+	while (y < fdf->row)
 	{
-		x = 0;
-		if (!(fdf->triple_matrix[x] = (t_point **)malloc(sizeof(t_point *) * (fdf->column + 1))))
+		if (!(fdf->triple_matrix[y] = (t_point **)malloc(sizeof(t_point *) * (fdf->column + 1))))
 			return ;
+		x = 0;
 		while (x < fdf->column)
 		{
 			if (!(fdf->triple_matrix[y][x] = (t_point *)malloc(sizeof(t_point))))

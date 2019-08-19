@@ -12,7 +12,9 @@
 # include "libft/libft.h"
 # include <stdio.h>
 
+# define MARINA 9056567
 # define ABS(x) ((x) < 0 ? (x) * -1 : (x))
+//1524
 
 typedef struct			s_list_fdf
 {
