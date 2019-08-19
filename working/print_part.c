@@ -1,30 +1,5 @@
 #include "fdf.h"
 
-int		close_w(void *param)
-{
-	(void)param;
-	exit(0);
-	return (0);
-}
-
-int		esc(int key)
-{
-	if (key == 53)
-		exit(0);
-	return (0);
-}
-
-void	open_window(t_fdf *fdf)
-{
-	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1280, 720, "FDF");
-	print_figure(fdf);
-	mlx_hook(fdf->win_ptr, 17, 0, close_w, (void *)0);
-	mlx_hook(fdf->win_ptr, 2, 0, esc, (void *)0);
-	mlx_loop(fdf->mlx_ptr);
-}
-
-
 void	print_border_lines(t_fdf *fdf)
 {
 	int i;
@@ -80,4 +55,28 @@ void	print_figure(t_fdf *fdf)
 		i++;
 	}
 	print_border_lines(fdf);
+}
+
+int		close_w(void *param)
+{
+	(void)param;
+	exit(0);
+	return (0);
+}
+
+int		esc(int key)
+{
+	if (key == 53)
+		exit(0);
+	return (0);
+}
+
+void	open_window(t_fdf *fdf)
+{
+	fdf->mlx_ptr = mlx_init();
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1280, 720, "FDF");
+	print_figure(fdf);
+	mlx_hook(fdf->win_ptr, 17, 0, close_w, (void *)0);
+	mlx_hook(fdf->win_ptr, 2, 0, esc, (void *)0);
+	mlx_loop(fdf->mlx_ptr);
 }
