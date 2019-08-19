@@ -75,7 +75,7 @@ int		**fill_the_matrix(t_fdf_list *list, t_fdf *fdf)
 			// 	counter++;
 			while (list->value[counter] != ' ' && list->value[counter] != '\0')
 				counter++;
-			while (list->value[counter == ' '] && list->value[counter != '\0'])
+			while (list->value[counter] == ' ' && list->value[counter] != '\0')
 				counter++;
 			x++;
 		}
