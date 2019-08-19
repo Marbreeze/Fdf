@@ -121,9 +121,10 @@ int		main(int ac, char **av)
 {
 	t_fdf		fdf;
 	int			fd;
-	int			i = 0;
+	// int			i = 0;
 
 	fd = 0;
+	ft_bzero(&fdf, sizeof(t_fdf));
 	if (ac != 2)
 		return (0);
 	else
@@ -136,16 +137,15 @@ int		main(int ac, char **av)
 		// printf("%s\n", fdf.value[1]);
 		// printf("row : %d\ncolumn : %d\n", fdf.row, fdf.column);
 		fdf.int_matrix = switch_char_to_int(&fdf);
-		
+		create_matrix_structure(&fdf);
+		open_window(&fdf);
+		close (fd);
+	}
+	return (0);
+}
+
 		// while (i < fdf.row)
 		// {
 		// 	printf("value test : %s\n", fdf.value[i]);
 		// 	i++;
 		// }
-		close (fd);
-	}
-	return (0);
-}
-	// create_matrix_structure(&fdf);
-	// open_window(&fdf);
-		// printf("row : %d\ncolumn : %d\n", fdf.row, fdf.column);
