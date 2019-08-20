@@ -1,8 +1,7 @@
 #include "fdf.h"
 
-void	print_border_lines(t_fdf *fdf)
-{
-	int i;
+void 	print_border_lines_row(t_fdf *fdf)
+{int i;
 
 	i = -1;
 	while (++i < fdf->row - 1)
@@ -15,7 +14,11 @@ void	print_border_lines(t_fdf *fdf)
 		fdf->second->z = fdf->triple_iso_mat[i + 1][fdf->column - 1]->z;
 		draw_line(fdf);
 	}
-	i = -1;
+}
+
+void	print_border_lines_column(t_fdf *fdf)
+{
+	int  	i = -1;
 	while (++i < fdf->column - 1)
 	{
 		fdf->first->x = fdf->triple_iso_mat[fdf->row - 1][i]->x;
@@ -28,16 +31,10 @@ void	print_border_lines(t_fdf *fdf)
 	}
 }
 
-void	print_figure(t_fdf *fdf)
+void	print_figure_c(t_fdf *fdf, int i, int j)
 {
-	int i;
-	int j;
 
-	i = 0;
-	while (i < fdf->row - 1)
-	{
-		j = 0;
-		while (j < fdf->column - 1)
+	while (j < fdf->column - 1)
 		{
 			fdf->first->x = fdf->triple_iso_mat[i][j]->x;
 			fdf->first->y = fdf->triple_iso_mat[i][j]->y;
@@ -52,9 +49,24 @@ void	print_figure(t_fdf *fdf)
 			draw_line(fdf);
 			j++;
 		}
-		i++;
+}
+
+
+
+void	print_figure_r(t_fdf *fdf)
+{
+	int i;
+	int j;
+
+	i = -1;
+	while (++i < fdf->row - 1)
+	{
+		j = -1;
+		while (++j < fdf->column - 1)
+			print_figure_c(fdf, i ,j);
 	}
-	print_border_lines(fdf);
+	print_border_lines_row(fdf);
+	print_border_lines_column(fdf);
 }
 
 int		close_w(void *param)
@@ -75,7 +87,7 @@ void	open_window(t_fdf *fdf)
 {
 	fdf->mlx_ptr = mlx_init();
 	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1280, 720, "FDF");
-	print_figure(fdf);
+	print_figure_r(fdf);
 	mlx_hook(fdf->win_ptr, 17, 0, close_w, (void *)0);
 	mlx_hook(fdf->win_ptr, 2, 0, esc, (void *)0);
 	mlx_loop(fdf->mlx_ptr);

@@ -19,30 +19,33 @@ int				print_high_assign_value(t_point **diff, t_point **point, \
 	return (xi);
 }
 
-void			print_high(t_fdf *fdf, t_point *first, \
-					t_point *second, int minimum_altitude)
+void		print_high(t_fdf *fdf, int minimum_alt)
 {
-	t_point		*diff;
-	t_point		*point;
-	int			xi;
-	double		color_increment;
+	t_point *diff;
+	t_point *point;
+	int xi;
+	double color_inc;
 
 	diff = (t_point *)malloc(sizeof(t_point));
 	point = (t_point *)malloc(sizeof(t_point));
-	xi = print_high_assign_value(&diff, &point, first, second);
-	color_increment = diff->z / (second->y - point->y);
-	while (++point->y < second->y)
+	xi = print_high_assign_value(&diff, &point, fdf->first,fdf->second);
+	color_inc = diff->z/(fdf->second->y - point ->y);
+	while(++point ->y < fdf->second->y)
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, (int)point->x, \
-				(int)point->y, minimum_altitude);
-		(point->z > 0) ? (point->x = point->x + xi) : (minimum_altitude += 0);
-		(point->z > 0) ? (point->z = point->z - 2 * diff->y) : \
-						(minimum_altitude += 0);
-		minimum_altitude += color_increment * 200;
-		point->z = point->z + 2 * diff->x;
+		mlx_pixel_put(fdf->mlx_ptr,fdf->win_ptr, (int)point->x,\
+		(int)point->y, minimum_alt);
+		if((point->z > 0))
+		{
+			(point->x = point->x + xi);
+			(point->z = point->z - 2.1 * diff->y);
+		}
+		minimum_alt += color_inc * 200;
+ 		point->z = point->z + 2 * diff->x;
+	
 	}
 	free(diff);
 	free(point);
+
 }
 
 int				print_low_assign_value(t_point **diff, t_point **point, \
@@ -89,29 +92,6 @@ void			print_low(t_fdf *fdf, t_point *first, \
 	free(point);
 }
 
-// void			print_low(t_fdf *fdf, int min)
-// {
-// 	t_point		*diff;
-// 	t_point		*point;
-// 	int			yi;
-// 	double		color_inc;
-	
-// 	diff = (t_point *)malloc(sizeof(t_point));
-// 	point = (t_point *)malloc(sizeof(t_point));
-// 	yi = print_low_assign_value(&diff, &point, fdf->first, fdf->second);
-// 	color_inc = diff->z / (fdf->second->y - point->y);
-// 	while (++point->x < fdf->second->x)
-// 	{
-// 		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, (int)point->x, (int)point->y, min);
-// 		(point->z > 0) ? (point->y = point->y + yi) : (min += 0);
-// 		(point->z > 0) ? (point->z = point->z - 2 * diff->x) : (min += 0);
-// 		min += color_inc * 200;
-// 		point->z = point->z + 2 * diff->y;
-// 	}
-// 	free(diff);
-// 	free(point);
-// }
-
 void			draw_line(t_fdf *fdf)
 {
 	int			min_var;
@@ -130,13 +110,14 @@ void			draw_line(t_fdf *fdf)
 			// print_low(fdf, min_var + num);
 		else
 			print_low(fdf, fdf->first, fdf->second, min_var + num);
-			// print_low(fdf, min_var + num);
+			//  print_low(fdf, min_var + num);
 	}
 	else
 	{
 		if (fdf->first->y > fdf->second->y)
-			print_high(fdf, fdf->second, fdf->first, min_var + num);
+			// print_high(fdf, fdf->second, fdf->first, min_var + num);
+			print_high(fdf, min_var + num);
 		else
-			print_high(fdf, fdf->first, fdf->second, min_var + num);
+			print_high(fdf, min_var + num);
 	}
 }
